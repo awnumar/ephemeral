@@ -1,3 +1,9 @@
+:root {
+    --dark-blue: #031927;
+    --light-blue: #c8e0f4;
+    --diamond-white: #eaebed;
+}
+
 body {
   /* font */
   font-family: "Helvetica", "Arial", sans-serif;
@@ -9,6 +15,13 @@ body {
   margin: auto;
 
   /* colour */
-  color: #d5d5d5;
-  background-color: #2a2a2a;
+  color: var(--diamond-white);
+  background-color: var(--dark-blue);
+}
+
+.title {
+    margin-top: 7rem;
+    text-align: center;
+    font-size: 8rem;
+    color: var(--light-blue);
 }
