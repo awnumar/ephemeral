@@ -1,0 +1,25 @@
+{
+  "name": "ephemeral",
+  "version": "0.0.0",
+  "description": "web-based end-to-end encrypted multi-party chat server",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awnumar/ephemeral.git"
+  },
+  "author": "Awn Umar",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/awnumar/ephemeral/issues"
+  },
+  "homepage": "https://github.com/awnumar/ephemeral#readme"
+}

@@ -1,0 +1,14 @@
+body {
+  /* font */
+  font-family: "Helvetica", "Arial", sans-serif;
+
+  /* layout */
+  max-width: 52em;
+  line-height: 1.5;
+  padding: 2rem 1rem;
+  margin: auto;
+
+  /* colour */
+  color: #d5d5d5;
+  background-color: #2a2a2a;
+}
