@@ -9,6 +9,7 @@ body {
   font-family: "Helvetica", "Arial", sans-serif;
 
   /* layout */
+  width: auto;
   max-width: 52em;
   line-height: 1.5;
   padding: 2rem 1rem;
@@ -24,4 +25,25 @@ body {
     text-align: center;
     font-size: 8rem;
     color: var(--light-blue);
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: auto;
+    padding-right: auto;
+    text-align: center;
+}
+
+.form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 1.5rem;
+}
+
+#key {
+    width: 100%;
 }

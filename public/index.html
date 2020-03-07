@@ -11,8 +11,15 @@
   <script type="text/javascript" src="nacl.min.js"></script>
 </head>
 <body>
-    <h1 class="title">Ephemeral</h1>
-
-    
+    <div class="content">
+        <h1 class="title">Ephemeral</h1>
+        <div class="form">
+            <form action="/chat" method="get">
+                <label for="key">Join existing room: </label>
+                <input type="text" id="key" name="key" placeholder="key"><br /><br />
+                <input type="submit" value="Join">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
