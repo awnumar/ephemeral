@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/awnumar/ephemeral.git"
   },
-  "author": "Awn Umar",
+  "author": "Awn Umar <awn@spacetime.dev> (https://spacetime.dev)",
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/awnumar/ephemeral/issues"

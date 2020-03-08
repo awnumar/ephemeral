@@ -23,15 +23,17 @@
         <button type="button" onclick="generate_key()">Create new room</button>
     </div>
     <script>
-        function toHexString(byteArray) {
-            return Array.prototype.map.call(byteArray, function(byte) {
-                return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-            }).join('');
+        function bytesToHex(bytes) {
+            // https://stackoverflow.com/a/34356351
+            for (var hex = [], i = 0; i < bytes.length; i++) {
+                var current = bytes[i] < 0 ? bytes[i] + 256 : bytes[i];
+                hex.push((current >>> 4).toString(16));
+                hex.push((current & 0xF).toString(16));
+            }
+            return hex.join("");
         }
         function generate_key() {
-            let key = nacl.randomBytes(32);
-            //let hex = Buffer.from(key).toString("hex");
-            window.location.href = "/chat?key=" + toHexString(key);
+            window.location.href = "/chat?key=" + bytesToHex(nacl.randomBytes(32));
         }
     </script>
 </body>
