@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Ephemeral</title>
-  <link rel="stylesheet" href="main.css">
+    <title>Ephemeral</title>
+    <link rel="stylesheet" href="main.css">
 
-  <!-- client-side cryptography -->
-  <script type="text/javascript" src="nacl.min.js"></script>
+    <!-- client-side cryptography -->
+    <script type="text/javascript" src="nacl.min.js"></script>
 </head>
 <body>
     <div class="content">
@@ -16,10 +16,23 @@
         <div class="form">
             <form action="/chat" method="get">
                 <label for="key">Join existing room: </label>
-                <input type="text" id="key" name="key" placeholder="key"><br /><br />
+                <input type="text" id="key" name="key" autocomplete="off" placeholder="enter room key"><br /><br />
                 <input type="submit" value="Join">
             </form>
-        </div>
+        </div><br><br>
+        <button type="button" onclick="generate_key()">Create new room</button>
     </div>
+    <script>
+        function toHexString(byteArray) {
+            return Array.prototype.map.call(byteArray, function(byte) {
+                return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+            }).join('');
+        }
+        function generate_key() {
+            let key = nacl.randomBytes(32);
+            //let hex = Buffer.from(key).toString("hex");
+            window.location.href = "/chat?key=" + toHexString(key);
+        }
+    </script>
 </body>
 </html>

@@ -6,8 +6,9 @@ const app = express();
 const port = 4444;
 
 // get handler on /test
-app.get("/test", function (req, res) {
-    res.send("hello world");
+app.get("/chat", function (req, res) {
+    // todo verify key exists and is valid length
+    res.send(req.query.key);
 });
 
 // everything else served from public/
