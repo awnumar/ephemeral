@@ -8,7 +8,7 @@ const port = 4444;
 // get handler on /test
 app.get("/chat", function (req, res) {
     // todo verify key exists and is valid length
-    res.send(req.query.key);
+    res.send("You are in room " + req.query.room);
 });
 
 // everything else served from public/

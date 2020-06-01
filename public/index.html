@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Ephemeral</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css" />
+    <script type="text/javascript" src="script.js"></script>
 
     <!-- client-side cryptography -->
     <script type="text/javascript" src="nacl.min.js"></script>
+
+    <!-- client-side framework-->
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
+
 <body>
     <div class="content">
         <h1 class="title">Ephemeral</h1>
         <div class="form">
             <form action="/chat" method="get">
                 <label for="key">Join existing room: </label>
-                <input type="text" id="key" name="key" autocomplete="off" placeholder="enter room key"><br /><br />
-                <input type="submit" value="Join">
+                <input type="text" id="id" name="id" autocomplete="off" placeholder="Room key" /><br /><br />
+                <input type="submit" value="Join" />
             </form>
-        </div><br><br>
-        <button type="button" onclick="generate_key()">Create new room</button>
+        </div>
+        <br /><br />
+        <button type="button" onclick="new_room()">Create new room</button>
     </div>
-    <script>
-        function bytesToHex(bytes) {
-            // https://stackoverflow.com/a/34356351
-            for (var hex = [], i = 0; i < bytes.length; i++) {
-                var current = bytes[i] < 0 ? bytes[i] + 256 : bytes[i];
-                hex.push((current >>> 4).toString(16));
-                hex.push((current & 0xF).toString(16));
-            }
-            return hex.join("");
-        }
-        function generate_key() {
-            window.location.href = "/chat?key=" + bytesToHex(nacl.randomBytes(32));
-        }
-    </script>
 </body>
+
 </html>
