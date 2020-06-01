@@ -4,9 +4,14 @@
     --diamond-white: #eaebed;
 }
 
+@font-face {
+    font-family: AlegreyaSansRegular;
+    src: url(/styles/AlegreyaSans-Regular.woff);
+}
+
 body {
   /* font */
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: AlegreyaSansRegular, "Helvetica", "Arial", sans-serif;
 
   /* layout */
   width: auto;
@@ -20,19 +25,19 @@ body {
   background-color: var(--dark-blue);
 }
 
-.title {
-    margin-top: 7rem;
-    text-align: center;
-    font-size: 8rem;
-    color: var(--light-blue);
-}
-
-.content {
+#app {
     width: 100%;
     margin: 0 auto;
     padding-left: auto;
     padding-right: auto;
     text-align: center;
+}
+
+.title {
+    margin-top: 7rem;
+    text-align: center;
+    font-size: 8rem;
+    color: var(--light-blue);
 }
 
 .form {
