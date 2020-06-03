@@ -1,12 +1,14 @@
 # Instructions
 
-First the dependencies must be installed:
+First the dependencies must be installed and the project files built:
 
 ```bash
-make install
+make build
 ```
 
-Then you can launch an instance with:
+This step does not have to be repeated unless `make clean` is called.
+
+You can launch the service with:
 
 ```bash
 make run
@@ -17,14 +19,6 @@ Build files can be cleaned up with:
 ```bash
 make clean
 ```
-
-For a fresh instance run:
-
-```bash
-make fresh
-```
-
-This will run `make clean` before installing and then running. 
 
 ### Webapp
 

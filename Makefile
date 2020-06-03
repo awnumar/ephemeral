@@ -2,13 +2,8 @@ run :
 	cd ./web-app; npm run build
 	npm start
 
-fresh :
-	make clean
-	make install
-	make run
-
-install :
-	cd ./web-app; npm install
+build :
+	cd ./web-app; npm install; npm run build
 	npm install
 
 clean :
