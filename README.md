@@ -1,24 +1,26 @@
 # Instructions
 
-First the dependencies must be installed and the project files built:
+1. Install dependencies.
+
+```bash
+make install
+```
+
+2. Build web-app files.
 
 ```bash
 make build
 ```
 
-This step does not have to be repeated unless `make clean` is called.
-
-You can launch the service with:
+3. Launch the service.
 
 ```bash
 make run
 ```
 
-Build files can be cleaned up with:
+Once step **1** has been run once, subsequent runs may simply call `make` which will automatically execute steps **2** and **3**.
 
-```bash
-make clean
-```
+Step **1** does not have to be repeated unless `make clean` is run.
 
 ### Webapp
 
