@@ -18,9 +18,13 @@ make build
 make run
 ```
 
-Once step **1** has been run once, subsequent runs may simply call `make` which will automatically execute steps **2** and **3**.
+Once step **1** has been run once, subsequent runs may simply call:
 
-Step **1** does not have to be repeated unless `make clean` is run.
+```bash
+make
+```
+
+which will automatically execute steps **2** and **3**. Step **1** does not have to be repeated unless `make clean` is run.
 
 ### Web-app
 
