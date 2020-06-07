@@ -2,6 +2,7 @@
     --dark-blue: #031927;
     --light-blue: #c8e0f4;
     --diamond-white: #eaebed;
+    --link: #75DBCD;
 }
 
 @font-face {
@@ -23,6 +24,20 @@ body {
   /* colour */
   color: var(--diamond-white);
   background-color: var(--dark-blue);
+}
+
+a {
+    color: var(--link);
+}
+
+nav {
+    width: 100%;
+    text-align: left;
+}
+
+.hl {
+    color: var(--light-blue);
+    text-decoration: underline;
 }
 
 #app {
