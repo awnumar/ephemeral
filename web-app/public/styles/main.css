@@ -26,6 +26,14 @@ body {
   background-color: var(--dark-blue);
 }
 
+#app {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: auto;
+    padding-right: auto;
+    text-align: center;
+}
+
 a {
     color: var(--link);
 }
@@ -35,17 +43,42 @@ nav {
     text-align: left;
 }
 
+#chat {
+    width: 100%;
+}
+
+#history-div {
+    text-align: left;
+    overflow-y: scroll;
+}
+
+#history-list {
+    list-style-type: none;
+}
+
+#input {
+    width: 100%;
+}
+
+#message {
+    width: 85%;
+    margin-right: 6px;
+}
+
+#send {
+    width: 15%;
+}
+
 .hl {
     color: var(--light-blue);
     text-decoration: underline;
 }
 
-#app {
-    width: 100%;
-    margin: 0 auto;
-    padding-left: auto;
-    padding-right: auto;
-    text-align: center;
+.name {
+    color: var(--light-blue);
+    font-variant: small-caps;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 .title {
@@ -67,3 +100,4 @@ label {
 #key {
     width: 100%;
 }
+
