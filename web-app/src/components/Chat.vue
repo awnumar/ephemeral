@@ -5,7 +5,7 @@
     <div id="chat">
       <div id="history-div">
         <ul id="history-list">
-          <li v-for="message in messages" v-bind:key="message.id">{{ message.time}} :: <span class="name">{{ message.author }}</span>: {{ message.text }}</li>
+          <li v-for="message in messages" v-bind:key="message.id">{{ message.time }} :: <span class="name">{{ message.author }}</span>: {{ message.text }}</li>
         </ul>
       </div>
       <div id="input">

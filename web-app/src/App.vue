@@ -26,7 +26,6 @@ export default {
   methods: {
     setKey(k) {
       this.key = k;
-      console.log(b2h(this.key));
       this.$router.push("/chat");
     }
   }

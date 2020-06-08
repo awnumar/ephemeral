@@ -4,7 +4,8 @@
   "description": "web-based end-to-end encrypted multi-party chat server",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0"
   },
   "devDependencies": {},
   "scripts": {
