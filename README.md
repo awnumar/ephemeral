@@ -1,4 +1,10 @@
-# Instructions
+# Ephemeral
+
+Web-based end-to-end encrypted chat application.
+
+**This is an experiment and is not intended for production use. _No guarantees of security are given._**
+
+## Instructions
 
 1. Install dependencies.
 

@@ -21,13 +21,22 @@
 </template>
 
 <script>
-// https://gist.github.com/72lions/4528834
-var _appendBuffer = function(buffer1, buffer2) {
-  var tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
+var catbufs = function(buffer1, buffer2) {
+  var tmp = new Uint8Array(buffer1.length + buffer2.length);
   tmp.set(new Uint8Array(buffer1), 0);
   tmp.set(new Uint8Array(buffer2), buffer1.byteLength);
   return tmp.buffer;
 };
+
+var b64tobytes = function(b64) {
+    var binary_string = window.atob(b64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
 
 import * as nacl from 'tweetnacl';
 export default {
@@ -53,9 +62,10 @@ export default {
       return hex.join("");
     },
     encrypt(m) {
+      let message = new TextEncoder().encode(m);
       let nonce = nacl.randomBytes(24);
-      let ciphertext = nacl.secretbox(new Uint8Array(m), nonce, this.key);
-      return _appendBuffer(nonce, ciphertext);
+      let ciphertext = nacl.secretbox(message, nonce, this.key);
+      return catbufs(nonce, ciphertext);
     },
     decrypt(c) {
       return nacl.secretbox.open(c.subarray(24), c.subarray(0, 24), this.key);
@@ -70,6 +80,10 @@ export default {
       document.getElementById('buffer').scrollIntoView(false, { behavior: 'smooth', block: 'end' });
     },
     sendMessage() {
+      if (this.socket == null) {
+        return;
+      }
+
       // parse nickname
       let nickname = document.getElementById("nick").value.trim();
       nickname = (nickname != "" && nickname != null) ? nickname : "anonymous";
@@ -89,7 +103,7 @@ export default {
 
       // perform encryption
       let encrypted = this.encrypt(payload);
-
+      
       // send to server
       this.socket.send(encrypted);
 
@@ -99,8 +113,23 @@ export default {
       // clear message input field
       document.getElementById("message").value = "";
     },
-    parseMessage() {
+    parseMessage(m) {
+      // Decode message from JSON
+      let payload = JSON.parse(m);
+      let message = b64tobytes(payload.message);
 
+      // Check if message came from server or another client
+      if (payload.server === true) {
+        this.logMessage("server", message);
+        return;
+      }
+
+      // Decrypt message
+      let decrypted = this.decrypt(new Uint8Array(message));
+      let inner_payload = JSON.parse(new TextDecoder().decode(decrypted));
+
+      // Log to chat window
+      this.logMessage(inner_payload.author, inner_payload.text);
     }
   },
   mounted() {
@@ -116,10 +145,29 @@ export default {
 
     // Connect to websocket server
     // SHOLD BE REPLACED WITH WSS:// WHEN TLS IS ADDED
-    this.socket = new WebSocket("ws://127.0.0.1:4444", this.roomID);
+    let socket = new WebSocket("ws://127.0.0.1:4444", this.roomID);
 
-    // Display connection message
-    this.logMessage("info", "connection established");
+    let component_instance = this;
+
+    // attach event handlers
+    socket.onopen = function() {
+      component_instance.socket = socket;
+      component_instance.logMessage("info", "connection established");
+    };
+
+    socket.onmessage = function(event) {
+      component_instance.parseMessage(event.data);
+    };
+
+    socket.onclose = function(event) {
+      component_instance.logMessage("info", "disconnected: " + event.reason);
+      component_instance.socket = null;
+    };
+
+    socket.onerror = function(event) {
+      component_instance.logMessage("error", event);
+      component_instance.socket = null;
+    };
   }
 };
 </script>

@@ -9,49 +9,37 @@ const port = 4444;
 app.use(express.static("web-app/dist"));
 
 // attach the websocket server
-const ws = require('express-ws')(app);
+const ws = require('express-ws')(app, undefined, { clientTracking: true });
 
-// Store active rooms here along with their participants
-// rooms["roomID"] = { participants: [ ws.client ] }
-let rooms = {};
-
-// remove client from room
-function remove_from_room(client, room) {
-    let i = rooms[room].indexOf(client);
-    if (i != -1) rooms[room].splice(i, 1);
-}
-
+// encode and wrap message in metadata
 function encapsulate(from, message) {
     let payload = {
         server: false,
-        message: btoa(message),
+        message: Buffer.from(message, 'binary').toString('base64'),
     };
-    if (from == null) payload[server] = true;
+    if (from === null) payload[server] = true;
     return JSON.stringify(payload);
 }
 
 // send a message to all clients in a particular room
 // except the sender
 function broadcast(from, roomID, payload) {
-    // iterate over all the clients in the room
-    for (let i = 0; i < rooms[roomID].length; i++) {
-        // except the sender
-        if (rooms[roomID][i] != from) {
-            // if client is ready for data
-            if (rooms[roomID][i].readyState == WebSocket.OPEN) {
-                rooms[roomID][i].send(encapsulate(from, payload));
-            } else {
-                // otherwise remove them
-                remove_from_room(rooms[roomID][i], roomID);
+    // iterate over all the clients
+    ws.getWss().clients.forEach(function each(client) {
+        // if client is not sender and can receive messages
+        if (client !== from && client.readyState === 1) {
+            // if client is in this room
+            if (client.protocol === roomID) {
+                client.send(encapsulate(from, payload));
             }
         }
-    }
+    });
 }
 
 // WebSocket connection handling
 app.ws("/", function connection(s, req) {
     // grab the room id from the request
-    let roomID = req.headers["sec-websocket-protocol"]
+    let roomID = req.headers["sec-websocket-protocol"];
     //let roomID = new URL(req.url).searchParams.get("room");
     
     // check that the roomid is valid
@@ -61,28 +49,9 @@ app.ws("/", function connection(s, req) {
         return;
     }
 
-    // check if this room exists
-    if (roomID in rooms) {
-        // add this client to that room
-        rooms[roomID].push(s);
-    } else {
-        // create a new room with only this client
-        rooms[roomID] = [s];
-    }
-
     // attach an incoming message handler
     s.on("message", function message(m) {
         broadcast(s, roomID, m);
-    });
-
-    // attach a cleanup handler
-    s.on("close", function(code, reason) {
-        // supress warnings
-        code = code;
-        reason = reason;
-
-        // remove client from their room
-        remove_from_room(s, roomID);
     });
 
     // broadcast a joined message
