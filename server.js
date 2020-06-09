@@ -17,8 +17,17 @@ let rooms = {};
 
 // remove client from room
 function remove_from_room(client, room) {
-    let i = rooms[roomID].indexOf(s);
-    if (i != -1) rooms[roomID].splice(i, 1);
+    let i = rooms[room].indexOf(client);
+    if (i != -1) rooms[room].splice(i, 1);
+}
+
+function encapsulate(from, message) {
+    let payload = {
+        server: false,
+        message: btoa(message),
+    };
+    if (from == null) payload[server] = true;
+    return JSON.stringify(payload);
 }
 
 // send a message to all clients in a particular room
@@ -30,9 +39,9 @@ function broadcast(from, roomID, payload) {
         if (rooms[roomID][i] != from) {
             // if client is ready for data
             if (rooms[roomID][i].readyState == WebSocket.OPEN) {
-                rooms[roomID][i].send(payload, { binary: true });
+                rooms[roomID][i].send(encapsulate(from, payload));
             } else {
-                // otherwise remove him
+                // otherwise remove them
                 remove_from_room(rooms[roomID][i], roomID);
             }
         }
@@ -75,6 +84,9 @@ app.ws("/", function connection(s, req) {
         // remove client from their room
         remove_from_room(s, roomID);
     });
+
+    // broadcast a joined message
+    broadcast(null, roomID, "new client joined the room");
 });
 
 // start listening
