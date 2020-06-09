@@ -3,12 +3,11 @@
     <h1 class="title">Ephemeral</h1>
     <div class="form">
         <form v-on:submit.prevent="existingRoom">
-            <label for="key">Join existing room: </label>
             <input type="text" id="key" name="key" autocomplete="off" placeholder="Room key" />
-            <input type="submit" value="Join" />
+            <button id="new-room" type="button" v-on:click="newRoom">Create new room</button>
+            <input type="submit" value="Join existing room" />
         </form>
     </div>
-    <button type="button" v-on:click="newRoom">Create new room</button>
   </div>
 </template>
 

@@ -48,6 +48,11 @@ nav {
     text-align: left;
 }
 
+#new-room {
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
 #content {
     height: 70vh;
 }
@@ -109,7 +114,7 @@ nav {
 }
 
 .form {
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -119,5 +124,6 @@ label {
 
 #key {
     width: 100%;
+    margin-bottom: 0.5rem;
 }
 
