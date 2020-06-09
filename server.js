@@ -3,7 +3,7 @@ const express = require("express");
 
 // create webserver instance
 const app = express();
-const port = 4444;
+const port = 8080;
 
 // serve the web-app files
 app.use(express.static("web-app/dist"));

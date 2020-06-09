@@ -32,6 +32,8 @@ make
 
 which will automatically execute steps **2** and **3**. Step **1** does not have to be repeated unless `make clean` is run.
 
+By default the service runs on port `8080`, so navigate to `http://127.0.0.1:8080`.
+
 ### Web-app
 
 To launch the frontend web-app independently of the server, see the `README.md` file within the web-app directory.

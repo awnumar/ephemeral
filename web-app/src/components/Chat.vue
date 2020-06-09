@@ -145,7 +145,7 @@ export default {
 
     // Connect to websocket server
     // SHOLD BE REPLACED WITH WSS:// WHEN TLS IS ADDED
-    let socket = new WebSocket("ws://127.0.0.1:4444", this.roomID);
+    let socket = new WebSocket("ws://127.0.0.1:8080", this.roomID);
 
     let component_instance = this;
 
