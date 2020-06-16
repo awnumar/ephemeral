@@ -3,9 +3,11 @@
     <h1 class="title">Ephemeral</h1>
     <div class="form">
         <form v-on:submit.prevent="existingRoom">
-            <input type="text" id="key" name="key" autocomplete="off" placeholder="Room key" />
-            <button id="new-room" type="button" v-on:click="newRoom">Create new room</button>
-            <input type="submit" value="Join existing room" />
+            <input type="text" id="key" name="key" autocomplete="off" placeholder="Room Key" />
+            <div id="home-buttons">
+              <button id="new-room" type="button" v-on:click="newRoom">Create New Room</button>
+              <input id="existing-room" type="submit" value="Join Existing Room" />
+            </div>
         </form>
     </div>
   </div>
@@ -38,4 +40,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#key {
+  padding: 10px;
+  border-radius: 14px;
+  border: 2px solid black;
+  font-size: 24px;
+}
+
+#new-room, #existing-room {
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  background-color: var(--light-blue);
+  border: 2px solid black;
+
+}
 </style>

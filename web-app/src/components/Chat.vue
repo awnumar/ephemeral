@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <nav><router-link to="/">Home</router-link></nav>
-    <label for="nick">Nickname:  </label><input type="text" id="nick" name="nick" placeholder="anonymous" />
+    <label for="nick">Nickname:  </label><input type="text" id="nick" name="nick" placeholder=" Anonymous" />
     <p>This room's key is <span class="hl">{{ b2h(this.key) }}</span></p>
     <div id="chat">
       <div id="history-div">
@@ -12,8 +12,8 @@
       </div>
       <div id="input">
         <form v-on:submit.prevent="sendMessage">
-          <input type="text" id="message" autocomplete="off" />
-          <input id="send" type="submit" value="send" />
+          <input type="text" id="message" autocomplete="off" placeholder=" Type a message..." />
+          <input id="send" type="submit" value="Send" />
         </form>
       </div>
     </div>
@@ -174,4 +174,33 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#nick {
+  font-size: 20px;
+  border-radius: 6px;
+  padding: 6px;
+}
+#message {
+  font-size: 18px;
+  border-radius: 6px;
+  padding: 14px;
+}
+#send {
+  background-color: var(--light-blue);
+  font-size: 20px;
+  border-radius: 6px;
+  padding: 15px;
+  border: 0px;
+}
+#history-div, #history-list {
+  border-radius: 14px;
+}
+a {
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: var(--link);
+  color: black;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
 </style>
