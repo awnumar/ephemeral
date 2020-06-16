@@ -2,7 +2,7 @@
   <div class="content">
     <nav><router-link to="/">Home</router-link></nav>
     <label for="nick">Nickname:  </label><input type="text" id="nick" name="nick" placeholder=" Anonymous" />
-    <p>This room's key is <span class="hl">{{ b2h(this.key) }}</span></p>
+    <p id="key-message">This room's key is <span class="hl">{{ b2h(this.key) }}</span></p>
     <div id="chat">
       <div id="history-div">
         <ul id="history-list">
@@ -202,5 +202,41 @@ a {
   color: black;
   padding: 6px 12px;
   border-radius: 6px;
+}
+@media screen and (max-width: 1200px) {
+  a {
+  font-size: 14px;
+  padding: 6px 12px;
+  }
+  #nick {
+    margin-top: 0px;
+    font-size: 12px;
+    margin-bottom:20px;
+  }
+  label {
+    font-size: 18px;
+    margin-bottom: 20px;
+    }
+  nav {
+    width: 0% !important;
+    float: left;
+  }
+  #key-message {
+    margin-top:-10px;
+  }
+  #message {
+    font-size: 12px;
+    padding: 8px;
+    margin-top: -2.5px;
+  }
+  #send {
+    font-size: 12px;
+    padding: 10px;
+    margin-top: -2.5px;
+
+  }
+  .content {
+    margin-top: -18px !important;
+  }
 }
 </style>

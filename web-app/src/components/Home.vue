@@ -55,4 +55,24 @@ export default {
   border: 2px solid black;
 
 }
+
+@media screen and (max-width: 1200px) {
+  h1 {
+    font-size: 84px;
+    margin-bottom: 16px;
+  }
+  #key {
+    font-size: 20px;
+    padding: 8px;
+  }
+  #new-room, #existing-room {
+    padding:8px;
+    font-size: 14px;
+    margin: 4px;
+  }
+  #home-buttons {
+    margin: 20px;
+  }
+}
+
 </style>
