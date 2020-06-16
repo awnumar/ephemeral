@@ -208,6 +208,9 @@ a {
   font-size: 14px;
   padding: 6px 12px;
   }
+  #history-div {
+    height: 60vh;
+  }
   #nick {
     margin-top: 0px;
     font-size: 12px;
