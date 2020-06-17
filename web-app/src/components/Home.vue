@@ -74,5 +74,26 @@ export default {
     margin: 20px;
   }
 }
-
+@media screen and (max-width: 780px) {
+  h1 {
+    font-size: 70px;
+  }
+    #key {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+@media screen and (max-width: 780px) {
+  h1 {
+    font-size: 62px;
+  }
+  #key {
+    font-size: 16px;
+    padding: 8px;
+  }
+  #new-room, #existing-room {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
 </style>
