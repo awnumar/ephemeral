@@ -191,8 +191,10 @@ export default {
   padding: 15px;
   border: 0px;
 }
-#history-div, #history-list {
+#history-div{
   border-radius: 14px;
+  height: 100%;
+
 }
 a {
   font-size: 20px;
@@ -236,10 +238,89 @@ a {
     font-size: 12px;
     padding: 10px;
     margin-top: -2.5px;
-
   }
   .content {
     margin-top: -18px !important;
   }
+}
+@media screen and (max-width: 780px) {
+  #nick {
+    position: relative;
+    }
+  label {
+    position: relative;
+  }
+  nav {
+    width: auto !important;
+  }
+  #message, #send {
+    position: fixed;
+    bottom: 20px;
+    
+  }
+  #key-message {
+    font-size: 11px;
+  }
+  #message {
+    font-size: 10px;
+    padding: 6px;
+    left: 20px;
+    width: 75%;
+    margin-top: 50px;
+  }
+  #send {
+    font-size: 10.5px;
+    margin: 0px;
+    right: 20px;
+    width: 14%;
+    padding:7.8px ;
+  }
+}
+@media screen and (max-width: 600px){
+    #message {
+    font-size: 12px;
+    width: 74%;
+    }
+    #send {
+      font-size: 12px;
+    }
+    #nick {
+      font-size: 12px;
+    }
+    label {
+      font-size: 12px;
+    }
+  }
+@media screen and (max-width: 500px) {
+
+  #message {
+    width: 70%;
+  }
+}
+@media screen and (max-height: 1280px) and (max-width: 1280px) {
+  #history-div {
+    height: 85vh;
+  }
+}
+@media screen and (max-height: 1000px) and (max-width: 1280px){
+  #history-div {
+    height: 80vh;
+  }
+@media screen and (max-height: 780px) and (max-width: 1280px){
+    #history-div {
+      height: 78vh;
+    }
+  }
+@media screen and (max-height: 700px) and (max-width: 1280px){
+    #history-div {
+      height: 75vh;
+    }
+  }
+  @media screen and (max-height: 610px) and (max-width: 1280px){
+      #history-div {
+        height: 60vh;
+    }
+  }
+
 }
 </style>
